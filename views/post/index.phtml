@@ -1,5 +1,5 @@
-<h2>Ultimos Posts</h2>
-<br/><br/>
+<h2>Ultimos Posts</h2><br/><br/>
+
 <?php if(isset($this->posts) && count($this->posts) ):?>
 <table border='1'>
     <?php for($i = 0;$i< count($this->posts); $i++):?>
@@ -13,3 +13,4 @@
 <?php else:?>
 <strong>No hay Posts</strong>
 <?php endif;?>
+<p><a href="<?php echo BASE_URL?>post/nuevo">Agregar Posts</a></p>

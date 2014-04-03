@@ -36,8 +36,10 @@ CREATE TABLE `posts` (
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
 
-INSERT INTO `posts` VALUES (1,'post1','Guillemro');
+INSERT INTO `posts` VALUES (1,'post1','Guillermo');
 INSERT INTO `posts` VALUES (2,'post2','Jackeline');
+INSERT INTO `posts` VALUES (3,'post3','Carlos');
+INSERT INTO `posts` VALUES (4,'Felicitaciones','Este ejemplo es un simple pero es funcional\r\n\r\n…xitos !!');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 

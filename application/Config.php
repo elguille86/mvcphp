@@ -3,8 +3,8 @@
 //define('BASE_URL', 'http://localhost/mvcphp/');
 define('BASE_URL', 'http://'.$_SERVER['HTTP_HOST'].'/mvcphp/');
 define('DEFAULT_CONTROLLER', 'index');
-//define('DEFAULT_LAYOUT', 'default');
-define('DEFAULT_LAYOUT', 'layout1');
+define('DEFAULT_LAYOUT', 'default');
+//define('DEFAULT_LAYOUT', 'layout1');
 
 
 define('APP_NAME', 'Mi Framework');

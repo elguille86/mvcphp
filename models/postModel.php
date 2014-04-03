@@ -21,6 +21,17 @@ class postModel extends Model
         );
         return $post; */
     }
+    public function insertarPost($titulo,$cuerpo)
+    {
+        // Añadiendo seguridad contra inyeccion de SQL y XLS
+       $this->_db->prepare("INSERT INTO posts VALUES (null, :titulo, :cuerpo)")
+                ->execute(
+                        array(
+                           ':titulo' => $titulo,
+                           ':cuerpo' => $cuerpo
+                        ));
+        
+    }
 }
 
 ?>
