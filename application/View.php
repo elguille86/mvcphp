@@ -15,9 +15,9 @@ class View
                 'enlace'=> BASE_URL,
             ),
             array(
-                'id'=> 'hola',
-                'titulo'=> 'Hola',
-                'enlace'=> BASE_URL.'hola',
+                'id'=> 'post',
+                'titulo'=> 'post',
+                'enlace'=> BASE_URL.'post',
             ),
             array(
                 'id'=> 'pdf/pdf1',
