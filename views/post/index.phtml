@@ -1,16 +1,26 @@
-<h2>Ultimos Posts</h2><br/><br/>
-
+<h2>Ultimos Posts</h2> 
+<p><a href="<?php echo BASE_URL?>post/nuevo">Agregar Posts</a></p>
 <?php if(isset($this->posts) && count($this->posts) ):?>
+<center>
 <table border='1'>
+    <tr>
+        <td>ID</td>
+        <td>Titulo</td>
+        <td>Mensaje</td>
+        <td>Editar</a></td>
+        <td>Eliminar</a></td>
+    </tr>
     <?php for($i = 0;$i< count($this->posts); $i++):?>
     <tr>
         <td><?php echo $this->posts[$i]['id']?></td>
         <td><?php echo $this->posts[$i]['titulo']?></td>
         <td><?php echo $this->posts[$i]['cuerpo']?></td>
+        <td><a href="<?php echo BASE_URL . 'post/editar/' . $this->posts[$i]['id']; ?>">Editar</a></td>
+        <td><a href="<?php echo BASE_URL . 'post/eliminar/' . $this->posts[$i]['id']; ?>">Eliminar</a></td>
     </tr>
     <?php endfor; ?>
 </table>
+</center>    
 <?php else:?>
 <strong>No hay Posts</strong>
 <?php endif;?>
-<p><a href="<?php echo BASE_URL?>post/nuevo">Agregar Posts</a></p>

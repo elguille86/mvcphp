@@ -39,7 +39,6 @@ abstract class Controller
     {
         if(isset($_POST[$clave]) && !empty($_POST[$clave]))
         {      
-            
             $_POST[$clave] =  htmlspecialchars($_POST[$clave],ENT_QUOTES) ;
             return $_POST[$clave];
             
@@ -48,11 +47,11 @@ abstract class Controller
     }   
     protected function getInt($clave)
     {
+        // Devuelve un int que llega por POST
         if(isset($_POST[$clave]) && !empty($_POST[$clave])){
             $_POST[$clave] = filter_input(INPUT_POST, $clave, FILTER_VALIDATE_INT);
             return $_POST[$clave];
         }
-        
         return 0;
     }
     
@@ -67,7 +66,24 @@ abstract class Controller
             exit;
         }
     }
+
+    protected function filtrarInt($int)
+    {
+        $int = (int) $int;
+        if(is_int($int)){
+            return $int;
+        }
+        else{
+            return 0;
+        }
+    }  
     
+    protected function getPostParam($clave)
+    {
+        if(isset($_POST[$clave])){
+            return $_POST[$clave];
+        }
+    }    
 }
 
 ?>

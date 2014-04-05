@@ -21,6 +21,14 @@ class postModel extends Model
         );
         return $post; */
     }
+    
+    public function getPost($id)
+    {
+        $id = (int) $id;
+        $post = $this->_db->query("select * from posts where id = $id");
+        return $post->fetch();
+    }
+    
     public function insertarPost($titulo,$cuerpo)
     {
         // Añadiendo seguridad contra inyeccion de SQL y XLS
@@ -32,6 +40,26 @@ class postModel extends Model
                         ));
         
     }
+    
+  public function editarPost($id, $titulo, $cuerpo)
+    {
+        $id = (int) $id;
+        
+        $this->_db->prepare("UPDATE posts SET titulo = :titulo, cuerpo = :cuerpo WHERE id = :id")
+                ->execute(
+                        array(
+                           ':id' => $id,
+                           ':titulo' => $titulo,
+                           ':cuerpo' => $cuerpo
+                        ));
+    }
+    
+    public function eliminarPost($id)
+    {
+        $id = (int) $id;
+        $this->_db->query("DELETE FROM posts WHERE id = $id");
+    }    
+    
 }
 
 ?>

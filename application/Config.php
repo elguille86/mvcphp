@@ -13,7 +13,7 @@ define('APP_COMPANY', 'www.rodriguezweb.netau.net');
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASS', 'developer');
+define('DB_PASS', 'guillermo');
 define('DB_NAME', 'mvcphp');
 define('DB_CHAR', 'utf8');
 
