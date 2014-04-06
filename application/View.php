@@ -26,12 +26,12 @@ class View
                 'id'=> 'pdf/pdf1',
                 'titulo'=> 'Reporte',
                 'enlace'=> BASE_URL.'pdf/pdf1',
-            ),
+            ),*/
             array(
                 'id'=> 'pdf/pdf1/Guillermo/Rodriguez',
-                'titulo'=> 'RepPara',
+                'titulo'=> 'PDF',
                 'enlace'=> BASE_URL.'pdf/pdf1/Guillermo/Rodriguez',
-            )*/
+            )
         );
         
         if(Session::get('autenticado')){
@@ -45,6 +45,12 @@ class View
                 'id' => 'login',
                 'titulo' => 'Iniciar Sesion',
                 'enlace' => BASE_URL . 'login'
+                );
+            
+            $menu[] = array(
+                'id' => 'registro',
+                'titulo' => 'Registro',
+                'enlace' => BASE_URL . 'registro'
                 );
         }        
         

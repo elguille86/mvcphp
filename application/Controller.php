@@ -107,7 +107,14 @@ abstract class Controller
         
     }
     
-    
+    public function validarEmail($email)
+    {
+        if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            return false;
+        }
+        
+        return true;
+    }
     
 }
 
