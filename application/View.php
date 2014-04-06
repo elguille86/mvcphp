@@ -21,6 +21,7 @@ class View
                 'titulo'=> 'post',
                 'enlace'=> BASE_URL.'post',
             ),
+/*
             array(
                 'id'=> 'pdf/pdf1',
                 'titulo'=> 'Reporte',
@@ -28,10 +29,24 @@ class View
             ),
             array(
                 'id'=> 'pdf/pdf1/Guillermo/Rodriguez',
-                'titulo'=> 'RParametros',
+                'titulo'=> 'RepPara',
                 'enlace'=> BASE_URL.'pdf/pdf1/Guillermo/Rodriguez',
-            )
+            )*/
         );
+        
+        if(Session::get('autenticado')){
+            $menu[] = array(
+                'id' => 'login',
+                'titulo' => 'Cerrar Sesion',
+                'enlace' => BASE_URL . 'login/cerrar'
+                );
+        }else{
+            $menu[] = array(
+                'id' => 'login',
+                'titulo' => 'Iniciar Sesion',
+                'enlace' => BASE_URL . 'login'
+                );
+        }        
         
         $js = array();
         

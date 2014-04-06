@@ -13,9 +13,9 @@ class Bootstrap
 		if(is_readable($rutaControlador))
 		{
 			require_once $rutaControlador;
-			$controlador = new $controller;
+			$controller = new $controller;
 
-			if(is_callable(array($controlador,$metodo)))
+			if(is_callable(array($controller,$metodo)))
 			{
 				$metodo = $peticion->getMetodo();// si el metodo no es valido
 			}
@@ -26,11 +26,11 @@ class Bootstrap
 
 			if(isset($args))
 			{
-				call_user_func_array(array($controlador , $metodo ) , $args);
+				call_user_func_array(array($controller , $metodo ) , $args);
 			}
 			else
 			{
-				call_user_func_array(array($controlador , $metodo));
+				call_user_func_array(array($controller , $metodo));
 			}
 		}
 		else

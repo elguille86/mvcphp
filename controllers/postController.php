@@ -17,9 +17,13 @@ class postController extends Controller
     }
     public function nuevo()
     {
+        //Session::acceso('especial');
+        // Bloqueando al permiso Admin
+        //Session::accesoEstricto(array('usuario'),true);
+        Session::accesoEstricto(array('usuario'));
         //$this->_view->prueba =  $this->getTexto('titulo');
         //$this->_view->prueba =  $this->getInt('guardar');
-        $this->_view->titulo = 'Nuevo Posts';
+        $this->_view->titulo = 'Nuevo Post';
         $this->_view->setJs(array('nuevo'));
         if($this->getInt('guardar') ==1){
             $this->_view->datos = $_POST;
