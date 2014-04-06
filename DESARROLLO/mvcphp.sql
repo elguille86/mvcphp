@@ -1,5 +1,5 @@
 ﻿# Host: 127.0.0.1  (Version: 5.5.8-log)
-# Date: 2014-04-06 12:50:09
+# Date: 2014-04-06 13:07:56
 # Generator: MySQL-Front 5.3  (Build 2.53)
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -35,7 +35,7 @@ CREATE TABLE `posts` (
 # Data for table "posts"
 #
 
-INSERT INTO `posts` VALUES (1,'post1','Guillermo Cambio'),(2,'post2','Mensaje de prueba actualizado.'),(4,'Felicitaciones','Este ejemplo es un simple pero es funcional\r\n\r\nÉxitos !!'),(5,'Diseño','Es una una pagina chevere , esta de prueba .'),(6,'&quot;Niño&quot;','&lt;script&gt;alert(&#039;Hola Mundo&#039;);&lt;/script&gt;'),(7,'Usuario ','Registro con datos de usuario autenticado');
+INSERT INTO `posts` VALUES (1,'post1','Guillermo Cambio.'),(2,'post2','Mensaje de prueba actualizado.'),(4,'Felicitaciones','Este ejemplo es un simple pero es funcional\r\n\r\nÉxitos !!'),(5,'Diseño','Es una una pagina chevere , esta de prueba .'),(6,'&quot;Niño&quot;','&lt;script&gt;alert(&#039;Hola Mundo&#039;);&lt;/script&gt;'),(7,'Usuario Administrador','Registro con datos de usuario autenticado.');
 
 #
 # Source for table "usuarios"
@@ -57,7 +57,7 @@ CREATE TABLE `usuarios` (
 # Data for table "usuarios"
 #
 
-INSERT INTO `usuarios` VALUES (1,'nombre1','admin','81dc9bdb52d04dc20036dbd8313ed055','admin@localhost.com','admin',1);
+INSERT INTO `usuarios` VALUES (1,'nombre1','admin','81dc9bdb52d04dc20036dbd8313ed055','admin@localhost.com','admin',1),(2,'usuario1','usuario','81dc9bdb52d04dc20036dbd8313ed055','usuario@hotmail.com','usuario',1),(3,'especial1','especial','81dc9bdb52d04dc20036dbd8313ed055','especial@hotmail.com','especial',1);
 
 #
 # Source for procedure "sp_listaPost"
