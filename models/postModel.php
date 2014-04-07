@@ -9,8 +9,8 @@ class postModel extends Model
     public function getPosts()
     { 
         
-        //$post = $this->_db->query("select * from posts");
-        $post = $this->_db->query("call sp_listaPost();");
+        $post = $this->_db->query("select * from posts order by id desc;");
+        //$post = $this->_db->query("call sp_listaPost();");
         
         return $post->fetchall();  
         /*
@@ -59,6 +59,22 @@ class postModel extends Model
         $id = (int) $id;
         $this->_db->query("DELETE FROM posts WHERE id = $id");
     }    
+    
+    public function insertarPrueba($nombre)
+    {
+        $this->_db->prepare("INSERT INTO prueba VALUES (null, :nombre)")
+                ->execute(
+                        array(
+                           ':nombre' => $nombre
+                        ));
+    }
+	
+	public function getPrueba()
+    {
+        $post = $this->_db->query("select * from prueba");
+        return $post->fetchAll();
+    }    
+    
     
 }
 

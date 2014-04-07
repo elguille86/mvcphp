@@ -9,10 +9,29 @@ class postController extends Controller
         $this->_post = $this->loadModel('post');
     }
 
-    public function index()
+    public function index($pagina = false)
     {
-        $this->_view->posts = $this->_post->getPosts();
-        //$this->_view->titulo = 'Portal de Citas';
+    	/*
+		for($i = 0; $i < 300; $i++){
+			$model = $this->loadModel('post');
+			$model->insertarPost('titulo ' . $i, 'cuerpo' . $i);
+		}*/
+		
+        if(!$this->filtrarInt($pagina)){
+                $pagina = false;
+        }
+        else{
+                $pagina = (int) $pagina;
+        }
+		
+    	$this->getLibrary('paginador');
+        $paginador = new Paginador();
+		
+        $this->_view->posts = $paginador->paginar($this->_post->getPosts(), $pagina);
+        $this->_view->paginacion = $paginador->getView('prueba', 'post/index'); 
+        //Listar sin Paginacion
+        //$this->_view->posts = $this->_post->getPosts();
+        $this->_view->titulo = 'Post';
         $this->_view->renderizar('index','post');
     }
     public function nuevo()
@@ -105,7 +124,36 @@ class postController extends Controller
         
         $this->_post->eliminarPost($this->filtrarInt($id));
         $this->redireccionar('post');
-    }    
+    }
+    
+    // Prueba
+    	public function prueba($pagina = false)
+	{
+		/*
+                 Inserccion de Datos para Validad la Paginacion
+		for($i = 0; $i < 300; $i++){
+			$model = $this->loadModel('post');
+			$model->insertarPrueba('nombre ' . $i);
+		}
+		*/
+		if(!$this->filtrarInt($pagina)){
+			$pagina = false;
+		}
+		else{
+			$pagina = (int) $pagina;
+		}
+		
+    	$this->getLibrary('paginador');
+		$paginador = new Paginador();
+		
+        $this->_view->posts = $paginador->paginar($this->_post->getPrueba(), $pagina);
+		$this->_view->paginacion = $paginador->getView('prueba', 'post/prueba');
+        $this->_view->titulo = 'Post';
+        $this->_view->renderizar('prueba', 'post');
+	}
+    
+    
+    
 }
 
 ?>
