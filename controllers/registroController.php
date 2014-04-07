@@ -81,7 +81,9 @@ class registroController extends Controller
                 exit;
              }
             /*
-             * En el caso de no contra en su  Server Web una cuenta configurar puedes usar un externo Gmail este 
+             * En el caso de no contra en su  Server Web una cuenta configurar puedes 
+             * usar un externo Gmail este Caso
+             
 		$mail->IsSMTP();
 		$mail->SMTPAuth   = true;                  // enable SMTP authentication
 		$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
