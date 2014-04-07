@@ -1,11 +1,5 @@
-Ôªø# Host: 127.0.0.1  (Version: 5.5.8-log)
-# Date: 2014-04-06 13:07:56
-# Generator: MySQL-Front 5.3  (Build 2.53)
+# MySQL-Front 5.1  (Build 3.18)
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE */;
 /*!40101 SET SQL_MODE='' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES */;
@@ -15,12 +9,17 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS */;
 /*!40014 SET FOREIGN_KEY_CHECKS=0 */;
 
+
+# Host: localhost    Database: mvcphp
+# ------------------------------------------------------
+# Server version 5.5.8-log
+
 DROP DATABASE IF EXISTS `mvcphp`;
 CREATE DATABASE `mvcphp` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `mvcphp`;
 
 #
-# Source for table "posts"
+# Source for table posts
 #
 
 DROP TABLE IF EXISTS `posts`;
@@ -32,13 +31,23 @@ CREATE TABLE `posts` (
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 #
-# Data for table "posts"
+# Dumping data for table posts
 #
+LOCK TABLES `posts` WRITE;
+/*!40000 ALTER TABLE `posts` DISABLE KEYS */;
 
-INSERT INTO `posts` VALUES (1,'post1','Guillermo Cambio.'),(2,'post2','Mensaje de prueba actualizado.'),(4,'Felicitaciones','Este ejemplo es un simple pero es funcional\r\n\r\n√âxitos !!'),(5,'Dise√±o','Es una una pagina chevere , esta de prueba .'),(6,'&quot;Ni√±o&quot;','&lt;script&gt;alert(&#039;Hola Mundo&#039;);&lt;/script&gt;'),(7,'Usuario Administrador','Registro con datos de usuario autenticado.');
+INSERT INTO `posts` VALUES (1,'post1','Guillermo Cambio.');
+INSERT INTO `posts` VALUES (2,'post2','Mensaje de prueba actualizado.');
+INSERT INTO `posts` VALUES (4,'Felicitaciones','Este ejemplo es un simple pero es funcional\r\n\r\n…xitos !!');
+INSERT INTO `posts` VALUES (5,'DiseÒo','Es una una pagina chevere , esta de prueba .');
+INSERT INTO `posts` VALUES (6,'&quot;NiÒo&quot;','&lt;script&gt;alert(&#039;Hola Mundo&#039;);&lt;/script&gt;');
+INSERT INTO `posts` VALUES (7,'Usuario Administrador','Registro con datos de usuario autenticado.');
+INSERT INTO `posts` VALUES (8,'Mensaje ','Desde la pc de mi trabajo');
+/*!40000 ALTER TABLE `posts` ENABLE KEYS */;
+UNLOCK TABLES;
 
 #
-# Source for table "usuarios"
+# Source for table usuarios
 #
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -48,33 +57,39 @@ CREATE TABLE `usuarios` (
   `usuario` varchar(30) NOT NULL,
   `pass` varchar(40) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `role` enum('admin','especial','usuario') DEFAULT NULL,
+  `role` enum('admin','especial','usuario') NOT NULL DEFAULT 'admin',
   `estado` tinyint(4) DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 #
-# Data for table "usuarios"
+# Dumping data for table usuarios
 #
+LOCK TABLES `usuarios` WRITE;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
 
-INSERT INTO `usuarios` VALUES (1,'nombre1','admin','81dc9bdb52d04dc20036dbd8313ed055','admin@localhost.com','admin',1),(2,'usuario1','usuario','81dc9bdb52d04dc20036dbd8313ed055','usuario@hotmail.com','usuario',1),(3,'especial1','especial','81dc9bdb52d04dc20036dbd8313ed055','especial@hotmail.com','especial',1);
+INSERT INTO `usuarios` VALUES (1,'nombre1','admin','d1b254c9620425f582e27f0044be34bee087d8b4','admin@localhost.com','admin',1,NULL);
+INSERT INTO `usuarios` VALUES (2,'usuario1','usuario','d1b254c9620425f582e27f0044be34bee087d8b4','usuario@hotmail.com','usuario',1,NULL);
+INSERT INTO `usuarios` VALUES (3,'especial1','especial','d1b254c9620425f582e27f0044be34bee087d8b4','especial@hotmail.com','especial',1,NULL);
+INSERT INTO `usuarios` VALUES (4,'Guillermo','grodriguez','d1b254c9620425f582e27f0044be34bee087d8b4','grodriguez@hotmail.com','usuario',1,'2014-04-07 09:30:01');
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+UNLOCK TABLES;
 
 #
-# Source for procedure "sp_listaPost"
+# Source for procedure sp_listaPost
 #
 
 DROP PROCEDURE IF EXISTS `sp_listaPost`;
-CREATE PROCEDURE `sp_listaPost`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_listaPost`(
  
 )
 begin
    select * from posts ;
 end;
 
+
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

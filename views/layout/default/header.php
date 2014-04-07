@@ -17,7 +17,7 @@
     </head>
 
     <body>
-        <body>
+     
             <div id="main">
                 <div id="header">
                     <div id="logo">
