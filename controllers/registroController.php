@@ -63,6 +63,9 @@ class registroController extends Controller
                 exit;
             }
             
+            $this->getLibrary('class.phpmailer');
+            $mail = new PHPMailer();
+            
             $this->_registro->registrarUsuario(
                     $this->getSql('nombre'),
                     $this->getAlphaNum('usuario'),
@@ -70,11 +73,39 @@ class registroController extends Controller
                     $this->getPostParam('email')
                     );
             
-             if(!$this->_registro->verificarUsuario($this->getAlphaNum('usuario'))){
+            $usuario = $this->_registro->verificarUsuario($this->getAlphaNum('usuario'));
+            
+             if(!$usuario){
                 $this->_view->_error = 'Error al registrar el usuario';
                 $this->_view->renderizar('index', 'registro');
                 exit;
              }
+            /*
+             * En el caso de no contra en su  Server Web una cuenta configurar puedes usar un externo Gmail este Caso
+		$mail->IsSMTP();
+		$mail->SMTPAuth   = true;                  // enable SMTP authentication
+		$mail->SMTPSecure = "ssl";                 // sets the prefix to the servier
+		$mail->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+		$mail->Port       = 465;                   // set the SMTP port for the GMAIL server
+		$mail->Username   = "correoempresa@gmail.com";  // GMAIL username
+		$mail->Password   = "clave";            // GMAIL password             
+             */
+             
+            $mail->From = 'www.mvc.dlancedu.com';
+            $mail->FromName = 'Tutorial MVC';
+            $mail->Subject = 'Activacion de cuenta de usuario';
+            $mail->Body = 'Hola <strong>' . $this->getSql('nombre') . '</strong>,' .
+                                            '<p>Se ha registrado en www.rodriguezweb.netau.net para activar ' .
+                                            'su cuenta haga clic sobre el siguiente enlace:<br>' .
+                                            '<a href="' . BASE_URL .'registro/activar/' . 
+                                            $usuario['id'] . '/' . $usuario['codigo'] . '">' .
+                                            BASE_URL .'registro/activar/' . 
+                                            $usuario['id'] . '/' . $usuario['codigo'] .'</a>' ;
+
+            $mail->AltBody = 'Su servidor de correo no soporta html';
+            $mail->AddAddress($this->getPostParam('email'));
+            $mail->Send();
+             
              
             $this->_view->datos = false;
             $this->_view->_mensaje = 'Registro Completado';
@@ -82,6 +113,53 @@ class registroController extends Controller
         
         $this->_view->renderizar('index', 'registro');
     }
+    
+	public function activar($id, $codigo)
+	{
+		if(!$this->filtrarInt($id) || !$this->filtrarInt($codigo)){
+			$this->_view->_error = 'Esta cuenta no existe';
+            $this->_view->renderizar('activar', 'registro');
+            exit;
+		}
+		
+		$row = $this->_registro->getUsuario(
+						$this->filtrarInt($id),
+						$this->filtrarInt($codigo)
+						);
+						
+		if(!$row){
+			$this->_view->_error = 'Esta cuenta no existe';
+            $this->_view->renderizar('activar', 'registro');
+            exit;
+		}
+		
+		if($row['estado'] == 1){
+			$this->_view->_error = 'Esta cuenta ya ha sido activada';
+            $this->_view->renderizar('activar', 'registro');
+            exit;
+		}
+
+		$this->_registro->activarUsuario(
+						$this->filtrarInt($id),
+						$this->filtrarInt($codigo)
+						);
+						
+		$row = $this->_registro->getUsuario(
+						$this->filtrarInt($id),
+						$this->filtrarInt($codigo)
+						);
+						
+		if($row['estado'] == 0){
+			$this->_view->_error = 'Error al activar la cuenta, por favor intente mas tarde';
+            $this->_view->renderizar('activar', 'registro');
+            exit;
+		}
+		
+		$this->_view->_mensaje = 'Su cuenta ha sido activada';
+		$this->_view->renderizar('activar', 'registro');
+	}
+    
+    
 }
 
 ?>
